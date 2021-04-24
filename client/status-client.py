@@ -15,6 +15,7 @@ SERVER = "http://status.localhost.lan/api.php"
 USER = "user"
 PASSWORD = "passwd"
 INTERVAL = 1  # 更新间隔，单位：秒
+UA = "ServerStatus"
 
 
 def check_interface(net_name):
@@ -164,7 +165,8 @@ def start_mon():
         print("update " + json.dumps(array) + '\n')
 
         try:
-            r = requests.post(SERVER,data=array)
+            headers = {'user-agent': UA}
+            r = requests.post(SERVER,data=array,headers=headers)
             print(r.text)
             time.sleep(5)
         except Exception as e:
