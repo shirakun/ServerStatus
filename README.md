@@ -50,11 +50,48 @@ cp node.php.template node.php
 
 客户端：
 
-先通过pip安装requests类库(`pip install requests`),其它参照原版:https://github.com/BotoX/ServerStatus
+Debian/Ubuntu
+
+```bash
+apt update && apt install python-pip -y && pip install requests
+mkdir -p /usr/local/ServerStatus
+wget https://github.com/shirakun/ServerStatus/raw/master/client/status-client.py -O /usr/local/ServerStatus/status-client.py
+wget --no-check-certificate "https://github.com/shirakun/ServerStatus/raw/master/service/status-client.debian" -O /etc/init.d/status-client
+chmod +x /etc/init.d/status-client
+update-rc.d -f status-client defaults
+```
+
+然后编辑客户端文件设置好配置信息后启动
+
+```bash
+vi /usr/local/ServerStatus/status-client.py
+service status-client restart
+```
+
+Alpine Linux
+
+```bash
+apk update
+apk add python3 py3-requests py3-psutil
+
+mkdir -p /usr/local/ServerStatus
+wget https://github.com/shirakun/ServerStatus/raw/master/client/status-psutil.py -O /usr/local/ServerStatus/status-psutil.py
+
+wget https://github.com/shirakun/ServerStatus/raw/master/service/status-client.alpine -O /etc/init.d/status-client
+chmod +x /etc/init.d/status-client
+rc-update add status-client boot
+```
+
+然后编辑客户端文件设置好配置信息后启动
+
+```bash
+vi /usr/local/ServerStatus/status-psutil.py
+service status-client restart
+```
 
 装好后修改配置文件,`SERVER`的值写完整的服务端api路径(`http://xxx.com/api.php`)
 
-## 修改方法
+## 服务端配置修改方法
 
 配置文件：`node.php`
 
