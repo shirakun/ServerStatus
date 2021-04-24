@@ -93,10 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } else {
     $json = [];
-    foreach ($server_list as $server) {
+    foreach ($server_config as $server => $config) {
         $server_info = $cache->get("server_{$server}_info");
         if (empty($server_info)) {
-            $server_info = $server_config[$server];
+            $server_info = $config;
             unset($server_config['password']);
 
             $server_info['network_tx']  = 0;
