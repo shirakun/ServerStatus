@@ -1,0 +1,13 @@
+<?php
+
+$server_config = [
+    "user" => [ //note: array key is client user
+        "name"     => "server name",
+        "password" => "passwd",
+        "location" => "self home",
+        "type"     => "VDS",
+        "host"     => "No",
+        "disabled" => false,
+        "region"   => "jp",
+    ],
+];

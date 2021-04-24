@@ -1,0 +1,5 @@
+{
+    "require": {
+        "rapidwebltd/rw-file-cache": "^1.2"
+    }
+}
