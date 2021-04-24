@@ -1,0 +1,5 @@
+#!/sbin/openrc-run
+supervisor=supervise-daemon
+
+name="status-client"
+command="/usr/bin/python3 /usr/local/ServerStatus/status-psutil.py"
