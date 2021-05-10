@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $json = [];
     foreach ($server_config as $server => $config) {
         $server_info = $cache->get("server_{$server}_info");
-        if (empty($server_info)) {
+        if (empty($server_info) || $server_info->last_send_time + 20 < time()) {
             $server_info = $config;
             unset($server_config['password']);
 
