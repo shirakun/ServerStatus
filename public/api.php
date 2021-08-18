@@ -8,6 +8,7 @@ require_once "../node.php";
 function timesecond($seconds)
 {
     $seconds = (int) $seconds;
+    $days_num = $days = $hours = $seconds = 0;
     if ($seconds > 3600) {
         if ($seconds > 24 * 3600) {
             $days     = (int) ($seconds / 86400);
