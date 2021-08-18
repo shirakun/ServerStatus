@@ -8,7 +8,7 @@ require_once "../node.php";
 function timesecond($seconds)
 {
     $seconds = (int) $seconds;
-    $days_num = $days = $hours = $seconds = 0;
+    $days_num  = 0; //不设置小时，分，秒，否则会只显示0小时0分0秒
     if ($seconds > 3600) {
         if ($seconds > 24 * 3600) {
             $days     = (int) ($seconds / 86400);
@@ -98,8 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $server_info = $cache->get("server_{$server}_info");
         if (empty($server_info) || $server_info['last_send_time'] + 20 < time()) {
             $server_info = $config;
-            unset($server_config['password']);
-
+            unset($server_info['password']); //在客户端离线时，api.php生成的json暴露密码
+			
             $server_info['network_tx']  = 0;
             $server_info['hdd_used']    = 0;
             $server_info['network_out'] = 0;
